@@ -2,23 +2,29 @@ package secondweekjavapractise;
 
 import java.util.Scanner;
 
-public class SubStringCheck2 {
-	static void check(String[] arrayOfStrings,int noOfStrings)
+
+public class SubStringCheck2{
+	
+	static void check(String[] arrayOfStrings,int noOfStrings) 
 	{
-		for(int i=0;i<noOfStrings-1;i++)
-		{
-			for(int j=i+1;j<noOfStrings;j++)
+		try {
+			for(int i=0;i<noOfStrings-1;i++)
 			{
+				for(int j=i+1;j<noOfStrings;j++)
+				{
 			
 				
-				  if(arrayOfStrings[j].contains(arrayOfStrings[i])) {
-				  System.out.println("["+i+","+j+"]"); }
-				  else if(arrayOfStrings[i].contains(arrayOfStrings[j])) {
-				  System.out.println("["+j+","+i+"]"); }
+					if(arrayOfStrings[j].contains(arrayOfStrings[i])) {
+						System.out.println("["+i+","+j+"]"); }
+					else if(arrayOfStrings[i].contains(arrayOfStrings[j])) {
+						System.out.println("["+j+","+i+"]"); }
 				 
-			}
+				}
 			
-		}
+			}
+		}catch(Exception e ) {System.out.println(e);}
+		
+		
 	}
 	
 
@@ -26,7 +32,7 @@ public class SubStringCheck2 {
 	{
 		Scanner sc= new Scanner(System.in);
 		
-		System.out.println("Praveen");
+		
 		System.out.println("Enter number of Strings: ");
 		int noOfStrings=sc.nextInt();
 		
@@ -37,10 +43,11 @@ public class SubStringCheck2 {
 		{
 			arrayOfStrings[i]=sc.next();
 		}
+		sc.close();
 		
 		check(arrayOfStrings,noOfStrings);
-		
-		sc.close();
 		}
-	
+		
 }
+	
+
