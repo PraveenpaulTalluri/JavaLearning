@@ -25,7 +25,6 @@ public class SubStringCheck2{
 		}catch(Exception e ) {System.out.println(e);}
 		
 		
-		
 	}
 	
 
