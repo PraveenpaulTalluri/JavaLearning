@@ -37,6 +37,8 @@ public class ListInterface {
 		    System.out.println(iterator.next());
 		}
 		
+		Collections.sort(al2);
+		System.out.println(al2);
 		
 		
 	}
