@@ -38,6 +38,8 @@ public class ArrayListExample2
 	        employees.add(new Employee(5l, "Vaishnavi", LocalDate.of(2019, Month.APRIL, 23)));
 	        employees.add(new Employee(2l, "Paul", LocalDate.of(2018, Month.APRIL, 24)));
 	                
+	        
+	        
 	        System.out.println("*************Sorted Employees by Name************* ");
 	        employees.sort(new NameSorter());
 	        for(Employee e:employees) {System.out.println(e);}
