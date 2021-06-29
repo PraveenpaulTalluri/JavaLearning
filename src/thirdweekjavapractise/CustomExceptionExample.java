@@ -14,7 +14,7 @@ class MyCustomException extends Throwable
 
 
 public class CustomExceptionExample {
-	static String originalPassword="ImAdmin";
+	static int originalPin=1234;
 	
 	 static ArrayList<Employee2> employee=new ArrayList<>(); 
 
@@ -24,13 +24,13 @@ public class CustomExceptionExample {
 		System.out.println("                      MENU                      ");
 		System.out.println("Press 1 : To display employee details");
 		System.out.println("Press 2 : To enter new employee details");
-		System.out.println("Press 3 :Forgot admin password,Reset now");
+		System.out.println("Press 3 :Forgot admin pin,Reset now");
 		System.out.println("Select any one Option :");
 		int option = scanner.nextInt();
 		switch (option) {
 		case 1:display();break;
 		case 2:update();break;
-		case 3: resetPassword();break;
+		case 3: resetPin();break;
 		default :System.out.println("Invalid input");
 		}
 		scanner.close();
@@ -44,32 +44,35 @@ public class CustomExceptionExample {
 	
 	static void update() throws MyCustomException
 	{
-		System.out.println("Enter admin Password : ");
+		System.out.println("Enter admin Pin : ");
 		Scanner scanner=new Scanner(System.in);
-		String inputPassword=scanner.nextLine();
+		int inputPin=scanner.nextInt();
 		
-		if(inputPassword.equals(originalPassword)) {
+		if(inputPin==originalPin) {
 			System.out.println("Enter id,name,designation of new employee : ");
 			employee.add(new Employee2(scanner.nextLong(),scanner.nextLine(),scanner.nextLine())); 
 		}
 		else {
-			System.out.println("passwaord mismatch");
+			System.out.println("pin mismatch");
 			menu();
 		}
 		scanner.close();
 	}
 	
-	static void resetPassword() throws MyCustomException
+	static void resetPin() throws MyCustomException
 	{
 		Scanner scanner=new Scanner(System.in);
 		System.out.println("Please enter your designation : ");
 		String temp=scanner.nextLine();
-		scanner.close();
-		if(temp=="Admin") {
-			System.out.println("Type new Password"); originalPassword=scanner.nextLine();
-			System.out.println("Password Updated succesfully");
+		
+		if(temp.equals("Admin")) {
+			System.out.println("Type new Pin"); 
+			originalPin=scanner.nextInt();
+			System.out.println("Pin Updated succesfully");
+			scanner.close();
 		}
 		else {
+			scanner.close();
 			throw new MyCustomException("Access denied");
 		}
 		
@@ -86,7 +89,7 @@ public class CustomExceptionExample {
 		try {
 		menu();}
 	    catch (MyCustomException e) {
-	    	System.out.println("CustomException Occured");
+	    	System.out.println("CustomException Occured : " +e);
 		}
 		
 	}
