@@ -25,13 +25,14 @@ public class CustomExceptionExample {
 		System.out.println("Press 1 : To display employee details");
 		System.out.println("Press 2 : To enter new employee details");
 		System.out.println("Press 3 :Forgot admin pin,Reset now");
+		System.out.println("Press any other key to exit");
 		System.out.println("Select any one Option :");
 		int option = scanner.nextInt();
 		switch (option) {
 		case 1:display();break;
 		case 2:update();break;
 		case 3: resetPin();break;
-		default :System.out.println("Invalid input");
+		default :System.out.println("Exit");
 		}
 		scanner.close();
 	}
@@ -50,7 +51,12 @@ public class CustomExceptionExample {
 		
 		if(inputPin==originalPin) {
 			System.out.println("Enter id,name,designation of new employee : ");
-			employee.add(new Employee2(scanner.nextLong(),scanner.nextLine(),scanner.nextLine())); 
+			Long id=scanner.nextLong();
+			String name=scanner.next(); 
+			String designation=scanner.next();
+			employee.add(new Employee2(id,name,designation)); 
+			System.out.println("Details uploaded succesfully");
+			menu();
 		}
 		else {
 			System.out.println("pin mismatch");
