@@ -16,7 +16,6 @@ public class Rectangle {
 		this.breadth=breadth;	
 	}
 	
-	
 	double area(double length,double breadth)
 	{
 		return length*breadth;
