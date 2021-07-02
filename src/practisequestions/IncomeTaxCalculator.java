@@ -28,9 +28,11 @@ public class IncomeTaxCalculator {
 		System.out.println("Tax Payable : "+tax);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InputMismatchException{
 		Scanner scanner =new Scanner(System.in);
 		
+		try {
+			
 		System.out.println("Enter employee CTC : ");
 		double income=scanner.nextDouble();
 		if(income>=0 && income<180000)
@@ -43,7 +45,8 @@ public class IncomeTaxCalculator {
 			slabD(income);
 		else
 			System.out.println("Entered CTC is invalid or not acceptable by this tax calculator.");
-			
+		
+		}catch(InputMismatchException e) {System.out.println("You have entered invalid input format for CTC");}
 		scanner.close();
 	}
 
