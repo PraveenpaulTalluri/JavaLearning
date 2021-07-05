@@ -1,3 +1,7 @@
+/*7.	Write a program to add list of student names to ArrayList and it should find a particular name whether 
+       it exists or not in the list.
+*/
+
 package practicequestionpart2;
 import java.util.*;
 
