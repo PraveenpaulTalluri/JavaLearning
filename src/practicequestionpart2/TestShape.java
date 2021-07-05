@@ -1,3 +1,5 @@
+//3.	Write the classes Line, Rectangle, Cube etc. & make the Shape as their base class. Add an abstract draw() method in the class Shape & draw all shapes.
+
 package practicequestionpart2;
 
 public class TestShape {

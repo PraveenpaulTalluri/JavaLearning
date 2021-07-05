@@ -1,3 +1,9 @@
+/*8.	Implement vector class for this problem
+-	Create an Employee class which will have details like EmployeeNo, EmployeeName and Address. You should pass value for EmployeeNo, EmployeeName and Address through constructor.
+-	Create a method addInput( ) which will add employee details to vector.
+-	Create method display( ) which should display all data from vector using Enumeration.
+-	Note :  addInput( ) and display( ) should not be member functions of Employee class.  
+*/
 package practicequestionpart2;
 
 import java.util.*;
