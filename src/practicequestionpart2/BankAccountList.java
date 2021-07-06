@@ -41,7 +41,6 @@ public class BankAccountList{
 				break;
 		default: System.out.println("Exit");
 		}
-		menu();
 		sc.close();
 	}
 	private void addInput() {
@@ -78,16 +77,22 @@ public class BankAccountList{
 		System.out.println("Enter account id :");
 		int id=sc2.nextInt();
 		
-		System.out.println("Enter amount you want to withdraw :");
-		float amount=sc2.nextFloat();
+		if(tset.contains(id))
+		{
+			System.out.println("Enter amount you want to withdraw :");
+			float amount=sc2.nextFloat();
+			
+			boolean bool =tset.add(new SavingAccount(amount,id,"","false","withdraw"));
+			
+			if(!bool)
+				System.out.println("You have insufficiant balance");
+			else
+				System.out.println("amount withdrawn");
+			
+		}
 		
-		boolean bool =tset.add(new SavingAccount(amount,id,"","false","withdraw"));
-		
-		if(!bool)
-			System.out.println("You have insufficiant balance");
-		else
-			System.out.println("amount withdrawn");
-		
+		  else { System.out.println("Account not found..!"); }
+		 
 		menu();
 		sc2.close();
 	}
@@ -99,12 +104,16 @@ public class BankAccountList{
 		System.out.println("Enter account id :");
 		int id=sc3.nextInt();
 		
-		System.out.println("Enter amount you want to Deposit :");
-		float amount=sc3.nextFloat();
-		
-		tset.add(new SavingAccount(amount,id,"","false","deposit"));
-		
-		System.out.println("amount deposited");
+		if(tset.contains(id))
+		{
+			System.out.println("Enter amount you want to Deposit :");
+			float amount=sc3.nextFloat();
+			
+			tset.add(new SavingAccount(amount,id,"","false","deposit"));
+			
+			System.out.println("amount deposited");
+			
+		}
 		
 		menu();
 		sc3.close();
