@@ -58,6 +58,8 @@ public class SavingAccount
      
 	public boolean equals(Object obj) {
         SavingAccount sa = (SavingAccount) obj;
+        if(sa.getAcc_ID()==this.acc_ID)
+        	return true;
         if ((sa.getAcc_ID() == this.acc_ID) && (this.action.equals("withdraw"))) {
         	//sa.acc_balance-=this.acc_balance;
         	withdraw(this.acc_balance);

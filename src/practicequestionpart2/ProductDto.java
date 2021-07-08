@@ -35,6 +35,7 @@ public class ProductDto {
 	public boolean equals(Object obj) {
 		
 		ProductDto p=(ProductDto)obj;
+		
 		if(p.productKey==this.productKey)
 			return true;
 		return false;

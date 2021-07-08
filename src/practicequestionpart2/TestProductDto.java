@@ -8,7 +8,7 @@ class SortByCreationDate implements Comparator<ProductDto>
 {
 	public int compare(ProductDto o1,ProductDto o2)
 	{
-		return o1.getProductCreationDate().compareTo(o2.getProductCreationDate());
+		return o2.getProductCreationDate().compareTo(o1.getProductCreationDate());
 	}
 }
 public class TestProductDto {
@@ -60,10 +60,12 @@ public class TestProductDto {
 	void sortByCreationDate() throws InputMismatchException, ParseException
 	{
 		list1.sort(new SortByCreationDate());
-		//list1.forEach(products->System.out.println(products));
+		System.out.println("List-1");
+		list1.forEach(products->System.out.println(products));
 		
 		list2.sort(new SortByCreationDate());
-		//list2.forEach(products->System.out.println(products));
+		System.out.println("List-2: ");
+		list2.forEach(products->System.out.println(products));
 		
 		menu();
 	}
