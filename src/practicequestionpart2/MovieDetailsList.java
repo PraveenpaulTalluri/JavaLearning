@@ -1,3 +1,9 @@
+/*10.	Create class Movie_Details with field’s mov_Name, lead_actor, lead_actrress, and genre  add setter and getter method in that class. 
+•         After creating this class create class Movie_DetailsList class who will maintain all the objects.
+•         Movie_DetailsList class should have method add_movie(), remove_movie(), remove_AllMovies(), find_movie_By_mov_Name(), find_movie_By_Genre()
+•         Movie_DetailsList should have method which will take an argument that will be use to determine on which to sort 
+*/
+
 package practicequestionpart2;
 
 import java.util.*;
@@ -25,17 +31,19 @@ public class MovieDetailsList {
 	void add_movie()
 	{
 		Scanner sc1=new Scanner(System.in);
+		
 		System.out.println("Enter movie name:");
-		String name=sc1.next();
+		String name=sc1.nextLine();
 		
 		System.out.println("Enter lead Actor:");
-		String actor=sc1.next();
+		String actor=sc1.nextLine();
 		
 		System.out.println("Enter lead Actress:");
-		String actress=sc1.next();
+		String actress=sc1.nextLine();
 		
 		System.out.println("Enter movie Genre:");
-		String genre=sc1.next();
+		String genre=sc1.nextLine();
+		
 		Movie_Details md1=new Movie_Details(name,actor,actress,genre);
 		alist.add(md1);
 		
@@ -46,22 +54,28 @@ public class MovieDetailsList {
 	void remove_movie()
 	{
 		Scanner sc2=new Scanner(System.in);
-		System.out.println("Enter movie name:");
-		String name=sc2.next();
 		
-		//System.out.println("Enter lead Actor:");
-		//String actor=sc2.next();
-		
-		//System.out.println("Enter lead Actress:");
-		//String actress=sc2.next();
-		
-		//System.out.println("Enter movie Genre:");
-		//String genre=sc2.next();
-		
-		if(alist.remove(alist.indexOf(name) ) != null)
-			System.out.println("removed succesfully");
+		if(alist.isEmpty())
+		{
+			System.out.println("List is empty..!");
+		}
 		else
-			System.out.println("movie not found");
+		{
+			boolean flag=false;
+			System.out.println("Enter movie name:");
+			String name=sc2.next();
+			
+			for(int i=0;i<alist.size();i++)
+			{
+				if(alist.get(i).getMovie_Name().equals(name))
+				{
+					alist.remove(i);
+					flag=true;
+				}
+			}
+			if(flag==false)
+				System.out.println("Movie not found");
+		}
 		
 		menu();
 		sc2.close();
@@ -69,34 +83,103 @@ public class MovieDetailsList {
 	
 	void remove_allMovies()
 	{
-		alist.removeAll(alist);
+		if(alist.isEmpty())
+			System.out.println("List is empty..!");
+		else
+			alist.clear();
+		
 		menu();
 	}
+	
 	void find_movie_by_movieName()
 	{
+		Scanner sc=new Scanner(System.in);
 		
+		if(alist.isEmpty())
+		{
+			System.out.println("List is empty..!");
+		}
+		else
+		{
+			boolean flag=false;
+			System.out.println("Enter movie name: ");
+			String name=sc.nextLine();
+			
+			for(int i=0;i<alist.size();i++)
+			{
+				if(alist.get(i).getMovie_Name().equals(name))
+				{
+					flag=true;
+					System.out.println(alist.get(i));
+				}
+			}
+			if(flag==false)
+				System.out.println("Movie not found");
+		}
+		
+		menu();
+		sc.close();
 	}
 	
 	void find_movie_by_Genre()
 	{
+		Scanner sc=new Scanner(System.in);
 		
-	}
-	
-	void sortByName()
-	{
-		alist.sort(new NameSorter());
+		if(alist.isEmpty())
+		{
+			System.out.println("List is empty..!");
+		}
+		else
+		{
+			boolean flag=false;
+			System.out.println("Enter movie Genre: ");
+			String genre=sc.nextLine();
+			
+			for(int i=0;i<alist.size();i++)
+			{
+				if(alist.get(i).getGenre().equals(genre))
+				{
+					System.out.println(alist.get(i));
+					flag=true;
+				}
+			}
+			if(flag==false)
+			{
+				System.out.println("Movie Not Found");
+			}
+		}
 		
-		for(Movie_Details m:alist)
-			System.out.println(m);
 		menu();
+		sc.close();
 	}
 	
-	void sortByGenre()
+	void sortByField(int arg)
 	{
-		alist.sort(new GenreSorter());
+		if(alist.isEmpty())
+		{
+			System.out.println("List is Empty..!");
+		}
+		else
+		{
+			if(arg==0)
+			{
+				Collections.sort(alist,new NameSorter());
+				
+				for(Movie_Details m:alist)
+					System.out.println(m);
+			}
+			else if(arg==1)
+			{
+				Collections.sort(alist,new GenreSorter());
+				
+				for(Movie_Details m:alist)
+					System.out.println(m);
+			}
+			else
+				System.out.println("Invalid option..!");
+			
+		}
 		
-		for(Movie_Details m:alist)
-			System.out.println(m);
 		menu();
 	}
 	
@@ -104,8 +187,10 @@ public class MovieDetailsList {
 	{
 		if(alist.isEmpty())
 			System.out.println("List is empty");
-		for(Movie_Details m:alist)
-			System.out.println(m);
+		else
+			for(Movie_Details m:alist)
+				System.out.println(m);
+		
 		menu();
 		
 	}
@@ -118,9 +203,8 @@ public class MovieDetailsList {
 		System.out.println("Press 3: To remove all movies");
 		System.out.println("Press 4: To find movie by movie name");
 		System.out.println("Press 5: To find movie by movie Genre");
-		System.out.println("Press 6: To sort by movie name");
-		System.out.println("Press 7: To sort by movie genre");
-		System.out.println("Press 8: To view movies availale");
+		System.out.println("Press 6: To sort movies");
+		System.out.println("Press 7: To view movies availale");
 		System.out.println("Press any other key to exit");
 		int option=sc.nextInt();
 		switch(option)
@@ -135,11 +219,12 @@ public class MovieDetailsList {
 				break;
 		case 5:find_movie_by_Genre();
 				break;
-		case 6:sortByName();
+		case 6:
+				System.out.println("Enter '0' to sort by Movie Name OR Enter '1' to sort by Genre");
+				int arg=sc.nextInt();
+				sortByField(arg);
 				break;
-		case 7: sortByGenre();
-				break;
-		case 8: display();
+		case 7: display();
 				break;
 		default: System.out.println("Exit");
 		}

@@ -53,40 +53,12 @@ public class SavingsAccount implements Comparable<SavingsAccount>{
 	public boolean equals(Object obj) {
        SavingAccount sa = (SavingAccount) obj;
        if(sa.getAcc_ID()==this.acc_ID)
-       	return true;
-       if (sa.getAcc_ID() == this.acc_ID) {
-       	//sa.acc_balance-=this.acc_balance;
-       	withdraw(this.acc_balance);
-           sa.setAcc_balance(this.acc_balance);
-           return true;
-       }
-       else if (sa.getAcc_ID() == this.acc_ID) {
-       	sa.setAcc_balance(sa.getAcc_balance() + this.acc_balance);
-           sa.setAcc_balance(sa.getAcc_balance());
-           return true;
-       }
-       else {
+       		return true;
+       else 
            return false;
-       }
+       
    }
-	
-	public void withdraw(float acc_balance2)
-	{
-		this.acc_balance-=acc_balance2;
-		
-	}
-	
-	  public boolean contains(Object o) {
-		  SavingAccount sa=(SavingAccount) o;
-		  if(sa.getAcc_ID()==this.acc_ID)
-		  {
-			  return true; 
-		  }
-		  else 
-			  return false;
-	  }
 	 
-	
 	 public int hashCode() {
 	        return (int) this.acc_ID;
 	    }

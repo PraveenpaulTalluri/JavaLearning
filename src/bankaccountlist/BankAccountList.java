@@ -1,5 +1,7 @@
-/*9.	Create a Class SavingAccount with field’s acc_balance, acc_ID, accountHoldername, isSalaryAccount. Also add setter and getter methods with business method like withdraw and deposit.
--	Create class BankAccountList which will maintain SavingAccount objects. Ensure that this class should not allow duplicates as well as data should be displayed in sorted order. (as per acc_ID)  
+/*9.	Create a Class SavingAccount with field’s acc_balance, acc_ID, accountHoldername, isSalaryAccount. 
+	Also add setter and getter methods with business method like withdraw and deposit.
+-	Create class BankAccountList which will maintain SavingAccount objects.
+ 	Ensure that this class should not allow duplicates as well as data should be displayed in sorted order. (as per acc_ID)  
 */
 
 package bankaccountlist;
@@ -8,7 +10,7 @@ import java.util.*;
 
 public class BankAccountList {
 	
-	 TreeSet<SavingsAccount> tset=new TreeSet<>();
+	 ArrayList<SavingsAccount> alist=new ArrayList<>();
 	 
 	void menu() throws InputMismatchException
 	{
@@ -30,84 +32,141 @@ public class BankAccountList {
 				break;
 		case 4:deposit();
 				break;
-		default: System.out.println("Exit");
+		default: System.out.println("Exited");
 		}
 		sc.close();
 	}
 	private void addInput() {
 		Scanner sc1=new Scanner(System.in);
+		boolean flag=false;
 		
 		System.out.println("Enter account ID: ");
-		int id=sc1.nextInt();
+		int id=Integer.parseInt(sc1.nextLine());
 		
-		System.out.println("Enter account holder name: ");
-		String name=sc1.next();
+		if(!alist.isEmpty())
+		{
+			for(int i=0;i<alist.size();i++)
+			{
+				if(alist.get(i).getAcc_ID()==id)
+				{
+					System.out.println("User with id-"+id+" is already Present, duplicates not allowed");
+					flag=true;
+					break;
+				}
+				
+			}
+		}
 		
-		System.out.println("Is this your salary account : Yes/No");
+		if(flag==false)
+		{
+			System.out.println("Enter account holder name: ");
+			String name=sc1.nextLine();
+			
+			System.out.println("Is this your salary account : Yes/No");
+			
+			String type=sc1.nextLine();
+			
+			alist.add(new SavingsAccount(0f,id,name,type));
+		}
 		
-		String s=sc1.next();
-		
-		tset.add(new SavingsAccount(0f,id,name,s));
 		menu();
 		sc1.close();
 	}
 	
 	private void view() {
-		
-		for(SavingsAccount s:tset)
+		if(alist.isEmpty())
+			System.out.println("List is empty");
+		else
 		{
-			System.out.println(s);
+			for(SavingsAccount s:alist)
+			{
+				System.out.println(s);
+			}
 		}
+		menu();
 	}
 	
 	
 	public void withdraw() 
 	{
 		Scanner sc2=new Scanner(System.in);
-		
-		System.out.println("Enter account id :");
-		int id=sc2.nextInt();
-		
-		if(tset.contains(id))
+		if(alist.isEmpty())
 		{
-			System.out.println("Enter amount you want to withdraw :");
-			float amount=sc2.nextFloat();
+			System.out.println("List is empty..!");
+		}
+		else
+		{
+			System.out.println("Enter account id :");
+			int id=sc2.nextInt();
 			
-			boolean bool =tset.add(new SavingsAccount(amount,id,"","false"));
+			boolean flag=false;
+			for(int i=0;i<alist.size();i++)
+			{
+				if(alist.get(i).getAcc_ID()==id)
+				{
+					float bal =alist.get(i).getAcc_balance();
+					System.out.println("Enter amount you want to withdraw :");
+					float amount=sc2.nextFloat();
+					
+					if(bal<amount)
+						System.out.println("You have insufficient balance");
+					else
+					{
+						alist.get(i).setAcc_balance(bal-amount);
+						System.out.println("Amount withdrawn");
+					}
+					
+					flag=true;
+					
+					break;
+				}
+			}
 			
-			if(!bool)
-				System.out.println("You have insufficiant balance");
-			else
-				System.out.println("amount withdrawn");
-			
+			 if(flag==false) { System.out.println("Account not found..!"); }
+			 
 		}
 		
-		  else { System.out.println("Account not found..!"); }
-		 
 		menu();
 		sc2.close();
 	}
 	
 	public void deposit() 
 	{
-		Scanner sc3=new Scanner(System.in);
-		
-		System.out.println("Enter account id :");
-		int id=sc3.nextInt();
-		
-		if(tset.contains(id))
+
+		Scanner sc2=new Scanner(System.in);
+		if(alist.isEmpty())
 		{
-			System.out.println("Enter amount you want to Deposit :");
-			float amount=sc3.nextFloat();
+			System.out.println("List is empty..!");
+		}
+		else
+		{
+			System.out.println("Enter account id :");
+			int id=sc2.nextInt();
 			
-			tset.add(new SavingsAccount(amount,id,"","false"));
+			boolean flag=false;
+			for(int i=0;i<alist.size();i++)
+			{
+				if(alist.get(i).getAcc_ID()==id)
+				{
+					float bal =alist.get(i).getAcc_balance();
+					System.out.println("Enter amount you want to deposite :");
+					float amount=sc2.nextFloat();
+				
+					alist.get(i).setAcc_balance(bal+amount);
+					System.out.println("Amount Deposited");
+					
+					flag=true;
+					
+					break;
+				}
+			}
 			
-			System.out.println("amount deposited");
-			
+			 if(flag==false) { System.out.println("Account not found..!"); }
+			 
 		}
 		
 		menu();
-		sc3.close();
+		sc2.close();
 	}
 
 	

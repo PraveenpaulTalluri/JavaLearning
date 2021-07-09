@@ -42,7 +42,7 @@ public class Movie_Details {
 	
 	public String toString()
 	{
-		return "Movie"+"[ "+"Name:"+movie_Name+" Lead Actor:"+lead_Actor+" Lead Actress:"+lead_Actress+" Genre:"+genre+" ]";
+		return "Movie"+"[ "+"Name:"+movie_Name+" | Lead Actor:"+lead_Actor+" | Lead Actress:"+lead_Actress+" | Genre:"+genre+" ]";
 	}
 	
 }
