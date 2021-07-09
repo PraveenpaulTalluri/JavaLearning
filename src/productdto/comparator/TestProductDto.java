@@ -1,22 +1,28 @@
 package productdto.comparator;
 
-
+import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
 
-public class TestProductDto implements Comparator<ProductDto>{
+class SortByDate implements Comparator<ProductDto>
+{
+	@Override
+	public int compare(ProductDto o1, ProductDto o2) {
+		
+		int flag=o2.productCreationDate.compareTo(o1.productCreationDate);
+		
+		if(flag==0)
+			return o1.productKey-o2.productKey;
+		
+		return flag;
+	}
+}
+public class TestProductDto{
 
 	ArrayList<ProductDto> list1=new ArrayList<>();
 	ArrayList<ProductDto> list2=new ArrayList<>();
 	
-	@Override
-	public int compare(ProductDto o1, ProductDto o2) {
-		int flag=o2.getProductCreationDate().compareTo(o1.getProductCreationDate());
-		if(flag==0)
-			return o1.getProductKey()-o2.getProductKey();
-		return flag;
-	}
+	
 	
 	void inputList1() throws ParseException
 	{
@@ -64,6 +70,7 @@ public class TestProductDto implements Comparator<ProductDto>{
 			System.out.println("List-1 is empty");
 		else
 		{
+			Collections.sort(list1,new SortByDate());
 			System.out.println("List-1");
 			list1.forEach(products->System.out.println(products));
 			
@@ -74,6 +81,7 @@ public class TestProductDto implements Comparator<ProductDto>{
 			System.out.println("List-2 is empty");
 		else
 		{
+			Collections.sort(list2,new SortByDate());
 			System.out.println("List-2");
 			list2.forEach(products->System.out.println(products));
 		}

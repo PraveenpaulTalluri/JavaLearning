@@ -63,7 +63,7 @@ public class ProductDto implements Comparable<ProductDto>{
 
 
 	public String toString() {
-		return "productKey:"+productKey;
+		return "productKey:"+productKey+" Date: "+productCreationDate;
 	}
 	
 	@Override

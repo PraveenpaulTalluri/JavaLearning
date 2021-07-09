@@ -3,9 +3,9 @@ package productdto.comparator;
 import java.util.Date;
 
 public class ProductDto{
-	private int productKey;
+	int productKey;
 	private String productDescription;
-	private Date productCreationDate;
+	Date productCreationDate;
 	public ProductDto(int productKey, String productDescription, Date productCreationDate) {
 		super();
 		this.productKey = productKey;
@@ -60,7 +60,8 @@ public class ProductDto{
 	public boolean equals(Object obj) {
 		
 		ProductDto p=(ProductDto)obj;
-		
+		if(p.productCreationDate==this.productCreationDate)
+			return true;
 		if(p.productKey==this.productKey)
 			return true;
 		return false;
@@ -68,7 +69,7 @@ public class ProductDto{
 
 
 	public String toString() {
-		return "productKey:"+productKey;
+		return "productKey:"+productKey +" " +productCreationDate;
 	}
 
 
