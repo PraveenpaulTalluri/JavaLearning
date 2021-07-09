@@ -4,18 +4,11 @@ import java.text.SimpleDateFormat;
 
 import java.util.*;
 
-class SortByCreationDate implements Comparator<ProductDto>
-{
-	public int compare(ProductDto o1,ProductDto o2)
-	{
-		return o2.getProductCreationDate().compareTo(o1.getProductCreationDate());
-	}
-}
+
 public class TestProductDto {
 	
-	List<ProductDto> list1=new ArrayList<>();
-	List<ProductDto> list2=new ArrayList<>();
-	
+	ArrayList<ProductDto> list1=new ArrayList<>();
+	ArrayList<ProductDto> list2=new ArrayList<>();
 	
 	void inputList1() throws ParseException
 	{
@@ -59,14 +52,24 @@ public class TestProductDto {
 	
 	void sortByCreationDate() throws InputMismatchException, ParseException
 	{
-		list1.sort(new SortByCreationDate());
-		System.out.println("List-1");
-		list1.forEach(products->System.out.println(products));
+		if(list1.isEmpty())
+			System.out.println("List-1 is empty");
+		else
+		{
+			Collections.sort(list1);
+			System.out.println("List-1");
+			list1.forEach(products->System.out.println(products));
+		}
 		
-		list2.sort(new SortByCreationDate());
-		System.out.println("List-2: ");
-		list2.forEach(products->System.out.println(products));
 		
+		if(list2.isEmpty())
+			System.out.println("List-2 is empty");
+		else
+		{
+			Collections.sort(list2);
+			System.out.println("List-2");
+			list2.forEach(products->System.out.println(products));
+		}
 		menu();
 	}
 	void findCommonProduct(List<ProductDto> list1,List<ProductDto> list2) throws InputMismatchException, ParseException

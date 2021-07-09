@@ -2,7 +2,7 @@ package practicequestionpart2;
 
 import java.util.*;
 
-public class ProductDto {
+public class ProductDto implements Comparable<ProductDto>{
 	private int productKey;
 	private String productDescription;
 	private Date productCreationDate;
@@ -44,6 +44,12 @@ public class ProductDto {
 
 	public String toString() {
 		return "productKey:"+productKey;
+	}
+
+
+	@Override
+	public int compareTo(ProductDto o) {
+		return  o.getProductCreationDate().compareTo(getProductCreationDate());
 	}
 	
 }
